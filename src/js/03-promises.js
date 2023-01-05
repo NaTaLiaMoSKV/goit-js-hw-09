@@ -15,15 +15,16 @@ function onFormSubmit(evt) {
   const delay = Number(delayInput.value);
   const step = Number(stepInput.value); 
   const amount = Number(amountInput.value);
+  if(amount === 0) return;
   let timeline = delay;
 
   const counter = setInterval(() => {
     createPromise(position, timeline).then(onCreatePromiseSuccess).catch(onCreatePromiseError);
+    if(position === amount) clearInterval(counter);
     timeline += step;
     position++;
-    if(position - amount === 1) clearInterval(counter);
   }, step);
-  
+
 };
 
 function onCreatePromiseSuccess({ position, delay }) {
