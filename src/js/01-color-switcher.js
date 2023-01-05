@@ -8,6 +8,7 @@ stopBtn.addEventListener('click', onStopBtnClick);
 function onStartBtnClick(e) {
     e.currentTarget.disabled = true;
     stopBtn.disabled = false;
+    document.body.style.backgroundColor = getRandomHexColor();
     timerId = setInterval( () => {
         document.body.style.backgroundColor = getRandomHexColor();
     }, 1000)
