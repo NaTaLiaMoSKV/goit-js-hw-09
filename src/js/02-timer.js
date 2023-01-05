@@ -3,6 +3,7 @@ import "flatpickr/dist/flatpickr.min.css";
 import "notiflix/dist/notiflix-3.2.5.min.css";
 import Notiflix from 'notiflix';
 
+const inputEl = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('button[data-start]');
 const daysEl = document.querySelector('span[data-days]');
 const hoursEl = document.querySelector('span[data-hours]');
@@ -22,6 +23,7 @@ const options = {
       showTime(convertMs(selectedDates[0] - Date.now()));
       startBtn.addEventListener('click', (e) => {
         e.currentTarget.disabled = true;
+        inputEl.disabled = true;
         const timerId = setInterval(() => {
           showTime(convertMs(selectedDates[0] - Date.now()));
           if(selectedDates[0] - Date.now() <= 1000) clearInterval(timerId);
