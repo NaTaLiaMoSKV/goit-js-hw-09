@@ -11,20 +11,16 @@ form.addEventListener('submit', onFormSubmit);
 function onFormSubmit(evt) {
   evt.preventDefault();
 
-  let position = 1;
+  // let position = 1;
   const delay = Number(delayInput.value);
   const step = Number(stepInput.value); 
   const amount = Number(amountInput.value);
-  if(amount === 0) return;
   let timeline = delay;
 
-  const counter = setInterval(() => {
-    createPromise(position, timeline).then(onCreatePromiseSuccess).catch(onCreatePromiseError);
-    if(position === amount) clearInterval(counter);
+  for(let pos = 1; pos <= amount; pos++) {
+    createPromise(pos, timeline).then(onCreatePromiseSuccess).catch(onCreatePromiseError);
     timeline += step;
-    position++;
-  }, step);
-
+  }
 };
 
 function onCreatePromiseSuccess({ position, delay }) {
